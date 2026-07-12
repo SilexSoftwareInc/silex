@@ -1,0 +1,342 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #FFFFFF;
+  --color-foreground: #000000;
+  --color-muted: #F5F5F5;
+  --color-mutedForeground: #525252;
+  --color-border: #000000;
+  --color-borderLight: #E5E5E5;
+
+  --color-mutedInverted: #999999;
+  --color-borderInverted: #333333;
+  --color-secondaryInverted: #666666;
+
+  --texture-line: rgba(0, 0, 0, 0.04);
+
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Source Serif 4", Georgia, serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+/* ─── Theme: dark ───
+   Full inversion of the monochrome palette so the editorial high-contrast
+   design is preserved (light sections become dark, dark sections become
+   light). Overrides the tokens above because [data-theme="dark"] has equal
+   specificity to :root but comes later in source order. */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --color-background: #000000;
+  --color-foreground: #ffffff;
+  --color-muted: #0a0a0a;
+  --color-mutedForeground: #a3a3a3;
+  --color-border: #ffffff;
+  --color-borderLight: #2a2a2a;
+  --color-mutedInverted: #666666;
+  --color-borderInverted: #cccccc;
+  --color-secondaryInverted: #999999;
+  --texture-line: rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+}
+
+/* ─── Base ─── */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Reserve space at the bottom so the fixed Dock never covers footer content */
+  padding-bottom: 5.5rem;
+}
+
+::selection {
+  background-color: var(--color-foreground);
+  color: var(--color-background);
+}
+
+/* ─── Keyframes ─── */
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── Animation Utility Classes ─── */
+
+.animate-slide-up {
+  animation: slideUp 0.7s ease-out forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown 0.7s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+.animate-page-enter {
+  animation: pageEnter 0.5s ease-out forwards;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* ─── Stagger Delays ─── */
+
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+
+/* ─── Scroll Reveal ─── */
+/* Default hidden state (revealed via JS). No-JS users get a <noscript>
+   override in the layout so content stays visible without JavaScript. */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ─── Custom Cursor ─── */
+
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
+
+  a, button, [role="button"], select, input, textarea, label[for] {
+    cursor: none;
+  }
+}
+
+.cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-foreground);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  transition: width 0.15s ease, height 0.15s ease, opacity 0.15s ease;
+}
+
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-foreground);
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  opacity: 0.4;
+  will-change: transform;
+}
+
+/* ─── Theme toggle icons ───
+   Swapped via [data-theme] (set before paint by the inline script) so the
+   correct icon shows with no flash and no JS state needed for rendering. */
+.icon-sun {
+  display: none;
+}
+.icon-moon {
+  display: block;
+}
+[data-theme="dark"] .icon-sun {
+  display: block;
+}
+[data-theme="dark"] .icon-moon {
+  display: none;
+}
+
+/* ─── Textures ─── */
+
+.texture-horizontal-lines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 1px,
+    var(--texture-line) 1px,
+    var(--texture-line) 2px
+  );
+  background-size: 100% 4px;
+  opacity: 0.015;
+}
+
+.texture-grid {
+  background-image:
+    linear-gradient(var(--texture-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--texture-line) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.015;
+}
+
+.texture-diagonal {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 40px,
+    var(--texture-line) 40px,
+    var(--texture-line) 42px
+  );
+  opacity: 0.01;
+}
+
+.texture-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.02;
+}
+
+.texture-vertical-lines {
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 1px,
+    var(--color-background) 1px,
+    var(--color-background) 2px
+  );
+  background-size: 4px 100%;
+  opacity: 0.03;
+}
+
+.texture-radial {
+  background-image: radial-gradient(
+    circle at top center,
+    var(--color-background),
+    transparent 70%
+  );
+  opacity: 0.05;
+}
+
+/* ─── Focus States ─── */
+
+*:focus-visible {
+  outline: 3px solid var(--color-foreground);
+  outline-offset: 3px;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: none;
+  border-bottom-width: 4px;
+}
+
+/* ─── FAQ accordion ─── */
+
+.faq {
+  cursor: pointer;
+}
+
+.faq .faq-panel {
+  grid-template-rows: 0fr;
+}
+
+.faq[open] .faq-panel {
+  grid-template-rows: 1fr;
+}
+
+.faq[open] .faq-icon {
+  transform: rotate(90deg);
+}
+
+/* ─── Tech marquee ─── */
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee 32s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ─── Reduced Motion ─── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .marquee-track {
+    animation: none !important;
+    transform: none !important;
+  }
+}
