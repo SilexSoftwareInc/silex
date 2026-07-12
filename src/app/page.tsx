@@ -5,7 +5,6 @@ import { SectionDivider } from "@/components/SectionDivider";
 import { Hero } from "@/components/Hero";
 import { Services } from "@/components/Services";
 import { BelowFoldSections } from "@/components/BelowFoldSections";
-import { TechMarquee } from "@/components/TechMarquee";
 import { ArrowRight } from "lucide-react";
 import { createMetadata } from "@/lib/metadata";
 
@@ -27,7 +26,6 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <TechMarquee />
       <SectionDivider />
       <Services />
       <BelowFoldSections />

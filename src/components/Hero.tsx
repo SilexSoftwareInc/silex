@@ -5,7 +5,7 @@ import { MagneticLayer } from "@/components/MagneticLayer";
 
 export function Hero() {
   return (
-    <section className="relative pt-32 pb-24 md:pt-40 md:pb-32 lg:pt-48 lg:pb-40 overflow-hidden">
+    <section className="relative pt-32 pb-24 md:pt-40 md:pb-32 lg:pt-48 lg:pb-40">
       <div className="texture-horizontal-lines absolute inset-0 pointer-events-none" />
       <div className="texture-noise absolute inset-0 pointer-events-none" />
 
@@ -61,27 +61,6 @@ export function Hero() {
               >
                 Our Services
               </Link>
-            </div>
-          </MagneticLayer>
-        </ScrollReveal>
-
-        <ScrollReveal delay={400}>
-          <MagneticLayer strength={3}>
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center text-sm text-[var(--color-mutedForeground)]">
-              <span className="inline-flex items-center gap-2 font-[family-name:var(--font-mono)] uppercase tracking-[0.15em] text-xs">
-                <span
-                  className="h-2 w-2 rounded-full bg-[var(--color-foreground)] animate-pulse-subtle"
-                  aria-hidden="true"
-                />
-                Accepting new projects
-              </span>
-              <span
-                className="hidden h-4 w-px bg-[var(--color-border)] sm:block"
-                aria-hidden="true"
-              />
-              <span className="font-[family-name:var(--font-body)]">
-                Trusted by government &amp; enterprise teams
-              </span>
             </div>
           </MagneticLayer>
         </ScrollReveal>

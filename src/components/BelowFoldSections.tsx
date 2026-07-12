@@ -3,6 +3,7 @@ import { SectionDivider } from "@/components/SectionDivider";
 import { Stats } from "@/components/Stats";
 import { Process } from "@/components/Process";
 import { Testimonials } from "@/components/Testimonials";
+import { HallOfFame } from "@/components/HallOfFame";
 import { Pricing } from "@/components/Pricing";
 import { Faq } from "@/components/Faq";
 import { faqs } from "@/data/faq";
@@ -14,6 +15,7 @@ export function BelowFoldSections() {
       <Process />
       <SectionDivider />
       <Testimonials />
+      <HallOfFame />
       <SectionDivider />
       <Pricing />
 

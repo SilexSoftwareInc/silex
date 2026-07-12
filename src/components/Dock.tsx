@@ -3,40 +3,8 @@
 import Link from "next/link";
 import { useRef, useCallback } from "react";
 import { usePathname } from "next/navigation";
-import {
-  Home,
-  Users,
-  Layers,
-  Workflow,
-  CircleDollarSign,
-  Mail,
-  ArrowUpRight,
-  type LucideIcon,
-} from "lucide-react";
 import { useMediaQuery } from "@/lib/useMediaQuery";
-
-type DockItem = {
-  label: string;
-  href: string;
-  icon: LucideIcon;
-  cta?: boolean;
-};
-
-const dockItems: DockItem[] = [
-  { label: "Home", href: "/", icon: Home },
-  { label: "About", href: "/about", icon: Users },
-  { label: "Services", href: "/services", icon: Layers },
-  { label: "Process", href: "/process", icon: Workflow },
-  { label: "Pricing", href: "/pricing", icon: CircleDollarSign },
-  { label: "Contact", href: "/contact", icon: Mail },
-];
-
-const ctaItem: DockItem = {
-  label: "Get Started",
-  href: "/contact",
-  icon: ArrowUpRight,
-  cta: true,
-};
+import { navItems, ctaItem } from "@/data/nav";
 
 const MAGNIFY_RADIUS = 140;
 const MAX_SCALE = 1.6;
@@ -99,7 +67,7 @@ export function Dock() {
     schedule();
   };
 
-  const allItems = [...dockItems, ctaItem];
+  const allItems = [...navItems, ctaItem];
 
   return (
     <nav
@@ -107,7 +75,7 @@ export function Dock() {
       aria-label="Primary"
       onPointerMove={handleMove}
       onPointerLeave={handleLeave}
-      className="no-scrollbar fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex max-w-[calc(100vw-1rem)] items-end gap-0.5 sm:gap-1.5 max-sm:overflow-x-auto rounded-[1.75rem] border border-[var(--color-border)] bg-[var(--color-background)]/70 px-2.5 sm:px-3 py-2 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
+      className="no-scrollbar fixed bottom-4 left-1/2 -translate-x-1/2 z-50 hidden max-sm:flex max-w-[calc(100vw-1rem)] items-end gap-0.5 sm:gap-1.5 max-sm:overflow-x-auto rounded-[1.75rem] border border-[var(--color-border)] bg-[var(--color-background)]/70 px-2.5 sm:px-3 py-2 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
     >
       {allItems.map((item, i) => {
         const Icon = item.icon;
