@@ -21,7 +21,7 @@ export function Header() {
           SILEX
         </Link>
 
-        <nav aria-label="Primary" className="hidden sm:flex items-center gap-8">
+        <nav aria-label="Primary" className="hidden lg:flex items-center gap-8">
           {navItems.map((item) => {
             const active = isActive(item.href);
             return (
@@ -48,7 +48,7 @@ export function Header() {
         <div className="flex items-center gap-3 sm:gap-4">
           <Link
             href={ctaItem.href}
-            className="hidden sm:inline-flex items-center gap-2 bg-[var(--color-foreground)] text-[var(--color-background)] px-5 py-2.5 text-xs font-[family-name:var(--font-mono)] uppercase tracking-[0.15em] transition-all duration-100 hover:bg-[var(--color-background)] hover:text-[var(--color-foreground)] hover:border-2 hover:border-[var(--color-foreground)]"
+            className="hidden lg:inline-flex items-center gap-2 bg-[var(--color-foreground)] text-[var(--color-background)] px-5 py-2.5 text-xs font-[family-name:var(--font-mono)] uppercase tracking-[0.15em] transition-all duration-100 hover:bg-[var(--color-background)] hover:text-[var(--color-foreground)] hover:border-2 hover:border-[var(--color-foreground)]"
           >
             {ctaItem.label}
           </Link>
