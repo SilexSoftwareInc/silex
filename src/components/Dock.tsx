@@ -75,7 +75,7 @@ export function Dock() {
       aria-label="Primary"
       onPointerMove={handleMove}
       onPointerLeave={handleLeave}
-      className="no-scrollbar fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex lg:hidden max-w-[calc(100vw-1rem)] items-end gap-0.5 sm:gap-1.5 rounded-[1.75rem] border border-[var(--color-border)] bg-[var(--color-background)]/70 px-2.5 sm:px-3 py-2 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
+      className="no-scrollbar fixed bottom-4 left-1/2 -translate-x-1/2 z-50 hidden max-sm:flex max-w-[calc(100vw-1rem)] items-end gap-0.5 sm:gap-1.5 max-sm:overflow-x-auto rounded-[1.75rem] border border-[var(--color-border)] bg-[var(--color-background)]/70 px-2.5 sm:px-3 py-2 backdrop-blur-md shadow-[0_8px_30px_rgba(0,0,0,0.12)]"
     >
       {allItems.map((item, i) => {
         const Icon = item.icon;
@@ -94,7 +94,7 @@ export function Dock() {
             aria-current={isActive ? "page" : undefined}
             onFocus={() => handleFocus(i)}
             onBlur={handleLeave}
-            className={`group relative flex shrink-0 origin-bottom items-center justify-center rounded-2xl transition-transform duration-150 ease-out will-change-transform max-sm:w-9 max-sm:h-9 ${
+            className={`group relative flex shrink-0 origin-bottom items-center justify-center rounded-2xl transition-transform duration-150 ease-out will-change-transform max-sm:w-10 max-sm:h-10 ${
               item.cta
                 ? "w-11 h-11 sm:w-12 sm:h-12 bg-[var(--color-foreground)] text-[var(--color-background)]"
                 : "w-11 h-11 sm:w-12 sm:h-12 text-[var(--color-foreground)] hover:bg-[var(--color-muted)]"

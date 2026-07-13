@@ -54,11 +54,11 @@ body {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Reserve space at the bottom below lg so the fixed Dock never covers footer content */
+  /* Reserve space at the bottom on mobile so the fixed Dock never covers footer content */
   padding-bottom: 5.5rem;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 640px) {
   body {
     padding-bottom: 0;
   }
