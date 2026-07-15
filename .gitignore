@@ -4,6 +4,9 @@ out
 build
 coverage
 
+.DS_Store
+
+
 # Dependencies / env
 .env
 .env.local
