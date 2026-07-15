@@ -109,7 +109,7 @@ export default function AboutPage() {
 
             <ScrollReveal delay={150}>
               <p className="text-lg leading-relaxed text-[var(--color-mutedForeground)] mb-6">
-                We founded Silex on a simple conviction: enterprise software
+                We founded <b>Silex Software Inc </b> on a simple conviction: enterprise software
                 doesn&apos;t have to be bad. That the organizations solving our
                 most important problems — in government, healthcare, finance,
                 and beyond — deserve technology that matches their ambition.
